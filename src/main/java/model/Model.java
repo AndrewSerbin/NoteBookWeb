@@ -1,15 +1,15 @@
 package model;
 
-import model.entity.NoteBook;
+import model.entity.NoteBookSingleton;
 import model.entity.Record;
 import model.exception.EmailAlreadyExistsException;
 
 public class Model {
 
-    private NoteBook noteBook;
+    private NoteBookSingleton noteBook;
 
     public Model() {
-        noteBook = new NoteBook();
+        noteBook = NoteBookSingleton.getInstance();
     }
 
     public void addRecord(Record record) throws EmailAlreadyExistsException {

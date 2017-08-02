@@ -3,13 +3,26 @@ package model.entity;
 import java.util.ArrayList;
 import model.exception.EmailAlreadyExistsException;
 
-public class NoteBook {
+public class NoteBookSingleton {
 
+	private static volatile NoteBookSingleton instance; 
     private ArrayList<Record> records;
 
-    public NoteBook() {
+    private NoteBookSingleton() {
         records = new ArrayList<>();
     }
+    
+    public static NoteBookSingleton getInstance() {
+    	if (instance == null) {
+			synchronized (NoteBookSingleton.class) {
+				if (instance == null) {
+					instance = new NoteBookSingleton();		
+				}
+			}
+		}
+		
+		return instance;
+	}
 
     public void add(Record inputedRecord) throws EmailAlreadyExistsException {
         checkEmailForUniq(inputedRecord);
