@@ -10,26 +10,26 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
-	
-	private static final long serialVersionUID = 1L;
-       
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		
-		String name = request.getParameter("name");
-		
-		response.setContentType("text/html;charset=utf-8");
-		
-		PrintWriter out = response.getWriter();
-		
-		out.println("<h3>Профиль юзера</h3>");
-		out.println("Name: " + name + "<br>");
-		out.close();
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
-		doGet(request, response);
-	}
+    private static final long serialVersionUID = 1L;
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	request.setCharacterEncoding("UTF-8");
+
+	String name = request.getParameter("name");
+
+	response.setContentType("text/html;charset=utf-8");
+
+	PrintWriter out = response.getWriter();
+
+	out.println("<h3>Профиль юзера</h3>");
+	out.println("Name: " + name + "<br>");
+	out.close();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+	doGet(request, response);
+    }
 }

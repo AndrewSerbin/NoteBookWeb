@@ -10,61 +10,61 @@ public class Address {
 
     private String fullAddress;
 
-    public Address(String index, String city, String street, String houseNumber,
-                   String apartmentNumber, String fullAddress) {
-        this.index = index;
-        this.city = city;
-        this.street = street;
-        this.houseNumber = houseNumber;
-        this.apartmentNumber = apartmentNumber;
-        this.fullAddress = fullAddress;
+    public Address(String index, String city, String street, String houseNumber, String apartmentNumber,
+	    String fullAddress) {
+	this.index = index;
+	this.city = city;
+	this.street = street;
+	this.houseNumber = houseNumber;
+	this.apartmentNumber = apartmentNumber;
+	this.fullAddress = fullAddress;
     }
 
     public String getIndex() {
-        return index;
+	return index;
     }
 
     public void setIndex(String index) {
-        this.index = index;
+	this.index = index;
     }
 
     public String getCity() {
-        return city;
+	return city;
     }
 
     public void setCity(String city) {
-        this.city = city;
+	this.city = city;
     }
 
     public String getStreet() {
-        return street;
+	return street;
     }
 
     public void setStreet(String street) {
-        this.street = street;
+	this.street = street;
     }
 
     public String getHouseNumber() {
-        return houseNumber;
+	return houseNumber;
     }
 
     public void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
+	this.houseNumber = houseNumber;
     }
 
     public String getApartmentNumber() {
-        return apartmentNumber;
+	return apartmentNumber;
     }
 
     public void setApartmentNumber(String apartmentNumber) {
-        this.apartmentNumber = apartmentNumber;
+	this.apartmentNumber = apartmentNumber;
     }
 
     public String getFullAddress() {
-        return fullAddress;
+	return fullAddress;
     }
 
     public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
+	this.fullAddress = fullAddress;
     }
 }

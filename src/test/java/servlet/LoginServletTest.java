@@ -6,14 +6,14 @@ import org.junit.Test;
 
 public class LoginServletTest {
 
-	@Test
-	public void testDoGetHttpServletRequestHttpServletResponse() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testDoGetHttpServletRequestHttpServletResponse() {
+	fail("Not yet implemented");
+    }
 
-	@Test
-	public void testDoPostHttpServletRequestHttpServletResponse() {
-		fail("Not yet implemented");
-	}
+    @Test
+    public void testDoPostHttpServletRequestHttpServletResponse() {
+	fail("Not yet implemented");
+    }
 
 }

@@ -9,41 +9,41 @@ public class FullName {
     private String truncatedName;
 
     public FullName(String surname, String name, String patronymic, String truncatedName) {
-        this.surname = surname;
-        this.name = name;
-        this.patronymic = patronymic;
-        this.truncatedName = truncatedName;
+	this.surname = surname;
+	this.name = name;
+	this.patronymic = patronymic;
+	this.truncatedName = truncatedName;
     }
 
     public String getSurname() {
-        return surname;
+	return surname;
     }
 
     public void setSurname(String surname) {
-        this.surname = surname;
+	this.surname = surname;
     }
 
     public String getName() {
-        return name;
+	return name;
     }
 
     public void setName(String name) {
-        this.name = name;
+	this.name = name;
     }
 
     public String getPatronymic() {
-        return patronymic;
+	return patronymic;
     }
 
     public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
+	this.patronymic = patronymic;
     }
 
     public String getTruncatedName() {
-        return truncatedName;
+	return truncatedName;
     }
 
     public void setTruncatedName(String truncatedName) {
-        this.truncatedName = truncatedName;
+	this.truncatedName = truncatedName;
     }
 }

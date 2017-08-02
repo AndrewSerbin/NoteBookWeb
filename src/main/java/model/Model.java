@@ -9,10 +9,10 @@ public class Model {
     private NoteBookSingleton noteBook;
 
     public Model() {
-        noteBook = NoteBookSingleton.getInstance();
+	noteBook = NoteBookSingleton.getInstance();
     }
 
     public void addRecord(Record record) throws EmailAlreadyExistsException {
-        noteBook.add(record);
+	noteBook.add(record);
     }
 }
