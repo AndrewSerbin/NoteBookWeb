@@ -1,6 +1,7 @@
 package model.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import model.exception.EmailAlreadyExistsException;
 
 public class NoteBookSingleton {
@@ -27,7 +28,7 @@ public class NoteBookSingleton {
     public void add(Record inputedRecord) throws EmailAlreadyExistsException {
         checkEmailForUniq(inputedRecord);
 
-        inputedRecord.refreshDateOfEntryInNoteBook();
+        inputedRecord.setDateOfEntryInNoteBook(new Date());
         records.add(inputedRecord);
     }
 
