@@ -3,7 +3,6 @@ package model.entity;
 public class Telephone {
 
     private String mainTelephone;
-
     private String spareTelephone;
 
     public Telephone(String mainTelephone, String spareTelephone) {

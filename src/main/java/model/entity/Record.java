@@ -5,23 +5,15 @@ import java.util.Date;
 public class Record {
 
     private FullName fullName;
-
     private String nick;
-
     private String description;
-
     private Group group;
-
     private Telephone telephone;
-
     private String email;
-
     private String skype;
-
     private Address address;
 
     private Date dateOfEntryInNoteBook;
-
     private Date dateOfLastChanging;
 
     public static Builder getBuilder() {

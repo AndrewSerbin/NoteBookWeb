@@ -3,9 +3,7 @@ package model.entity;
 public class FullName {
 
     private String surname;
-
     private String name;
-
     private String patronymic;
 
     private String truncatedName;
