@@ -8,7 +8,6 @@ import model.entity.Record;
 import model.entity.Telephone;
 
 class RecordBuilder {
-
 	private FullName fullName;
     private String nick;
     private String description;
