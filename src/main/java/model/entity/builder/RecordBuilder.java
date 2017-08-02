@@ -9,7 +9,6 @@ import model.entity.Telephone;
 
 class RecordBuilder {
 
-	// Default initialization
 	private FullName fullName;
     private String nick;
     private String description;
