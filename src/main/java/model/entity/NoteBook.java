@@ -1,7 +1,7 @@
 package model.entity;
 
 import java.util.ArrayList;
-import model.util.EmailAlreadyExistsException;
+import model.exception.EmailAlreadyExistsException;
 
 public class NoteBook {
 
