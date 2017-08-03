@@ -7,7 +7,7 @@ import model.entity.Group;
 import model.entity.Record;
 import model.entity.Telephone;
 
-class RecordBuilder {
+public class RecordBuilder {
 
     private FullName fullName;
     private String nick;
@@ -37,7 +37,7 @@ class RecordBuilder {
     }
 
     public RecordBuilder setGroup(String group) {
-	this.group = Group.valueOf(group);
+	this.group = Group.valueOf(group.toUpperCase());
 	return this;
     }
 
