@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Hashtable;
 
 import javax.servlet.RequestDispatcher;
@@ -12,25 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.entity.Address;
-import model.entity.FullName;
-import model.entity.Group;
 import model.entity.NoteBookSingleton;
-import model.entity.Telephone;
 import model.entity.builder.RecordBuilder;
 import model.exception.EmailAlreadyExistsException;
+import servlet.util.RegexConstants;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    private HttpSession session;
+
     private static NoteBookSingleton noteBook = NoteBookSingleton.getInstance();
 
+    // Record data
     private String surname;
     private String name;
     private String patronymic;
-    private String truncatedName;
 
     private String nick;
 
@@ -50,52 +48,67 @@ public class RegistrationServlet extends HttpServlet {
     private String street;
     private String houseNumber;
     private String apartmentNumber;
-    private String fullAddress;
 
-    private Hashtable<String, String> errors = new Hashtable<>();
+    // Validation data
+    private Hashtable<String, String> errors;
     private boolean validation;
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
-	validation = true;
-	
+	setValidation();
+
 	setAll(request);
 	checkAll();
 
-	HttpSession session = request.getSession();
+	session = request.getSession();
 
+	redirect(request, response);
+    }
+
+    private void redirect(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 	RequestDispatcher dispatcher;
+
 	if (validation) {
 	    try {
 		noteBook.add(new RecordBuilder()
-		    		.setFullName(surname, name, patronymic, truncatedName)
-		    		.setNick(nick)
-		    		.setDesription(description)
-		    		.setGroup(group)
-		    		.setTelephone(mainTelephone, spareTelephone)
-		    		.setEmail(email)
-		    		.setSkype(skype)
-		    		.setAddress(index, city, street, houseNumber, apartmentNumber, fullAddress)
-		    		.build());
-		
+			.setFullName(surname, name, patronymic, truncateName(surname, name))
+			.setNick(nick)
+			.setDesription(description)
+			.setGroup(group)
+			.setTelephone(mainTelephone, spareTelephone)
+			.setEmail(email)
+			.setSkype(skype)
+			.setAddress(index, city, street, houseNumber, apartmentNumber,
+				createFullAddress(index, city, street, houseNumber, apartmentNumber))
+			.build());
+
 		dispatcher = this.getServletContext().getRequestDispatcher("/success.jsp");
 	    } catch (EmailAlreadyExistsException e) {
 		errors.put("email", RegexConstants.REGEX_EMAIL);
 		session.setAttribute("errors", errors);
-		
+
 		dispatcher = this.getServletContext().getRequestDispatcher("/retry.jsp");
 	    }
 	} else {
 	    session.setAttribute("errors", errors);
-	    
+
 	    dispatcher = this.getServletContext().getRequestDispatcher("/retry.jsp");
 	}
+
 	dispatcher.forward(request, response);
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 	doGet(request, response);
+    }
+
+    private void setValidation() {
+	validation = true;
+	errors = new Hashtable<>();
     }
 
     private void checkAll() {
@@ -118,7 +131,7 @@ public class RegistrationServlet extends HttpServlet {
     }
 
     public void checkWithRegex(String parameterName, String input, String regex) {
-	if (!input.matches(regex)) {
+	if (input == null || !input.matches(regex)) {
 	    errors.put(parameterName, regex);
 	    validation = false;
 	}
@@ -139,7 +152,6 @@ public class RegistrationServlet extends HttpServlet {
 	name = request.getParameter("name");
 	surname = request.getParameter("surname");
 	patronymic = request.getParameter("patronymic");
-	truncatedName = truncateName(surname, name);
     }
 
     private void setNick(HttpServletRequest request) {
@@ -173,7 +185,6 @@ public class RegistrationServlet extends HttpServlet {
 	street = request.getParameter("street");
 	houseNumber = request.getParameter("houseNumber");
 	apartmentNumber = request.getParameter("apartmentNumber");
-	fullAddress = createFullAddress(index, city, street, houseNumber, apartmentNumber);
     }
 
     private String truncateName(String surname, String name) {
@@ -188,7 +199,8 @@ public class RegistrationServlet extends HttpServlet {
 		.toString();
     }
 
-    String createFullAddress(String index, String city, String street, String houseNumber, String apartmentNumber) {
+    private String createFullAddress(String index, String city, String street, String houseNumber,
+	    String apartmentNumber) {
 	String comma = new String(", ");
 
 	return new StringBuilder()

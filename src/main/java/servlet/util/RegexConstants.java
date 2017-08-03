@@ -1,6 +1,6 @@
-package servlet;
+package servlet.util;
 
-interface RegexConstants {
+public interface RegexConstants {
 
     String REGEX_GROUP = "all|friends|colleagues|family";
 
@@ -18,7 +18,7 @@ interface RegexConstants {
 
     String REGEX_INDEX = "[0-9]{5}";
 
-    String REGEX_CITY_AND_STREET = "[a-zA-Z]*";
+    String REGEX_CITY_AND_STREET = "[a-zA-Z]{2,30}";
 
     String REGEX_HOUSE_AND_APARTMENT_NUMBER = "[0-9]{1,3}";
 }
