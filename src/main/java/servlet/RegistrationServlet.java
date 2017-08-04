@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import model.entity.NoteBookSingleton;
 import model.entity.builder.RecordBuilder;
 import model.exception.EmailAlreadyExistsException;
-import servlet.util.constants.RegexConstants;
+import servlet.util.regex.RegexConstants;
 
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
