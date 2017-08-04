@@ -1,4 +1,4 @@
-package servlet.util;
+package servlet.util.constants;
 
 public interface RegexConstants {
 
