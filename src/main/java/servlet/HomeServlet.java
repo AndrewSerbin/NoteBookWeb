@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import servlet.util.bundle_init.EnBundleMaker;
-import servlet.util.bundle_init.RuBundleMaker;
+import servlet.util.bundle.EnBundleMaker;
+import servlet.util.bundle.RuBundleMaker;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {

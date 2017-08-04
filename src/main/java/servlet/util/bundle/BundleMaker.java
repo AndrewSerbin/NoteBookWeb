@@ -1,4 +1,4 @@
-package servlet.util.bundle_init;
+package servlet.util.bundle;
 
 import java.util.ResourceBundle;
 

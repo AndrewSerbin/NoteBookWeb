@@ -1,4 +1,4 @@
-package servlet.util.constants;
+package servlet.util.bundle;
 
 public interface BundleConstants {
 
