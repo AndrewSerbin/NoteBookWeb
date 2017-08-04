@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.Locale;
 import java.util.ResourceBundle;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import servlet.util.bundle_init.EnBundleMaker;
+import servlet.util.bundle_init.RuBundleMaker;
 
 @WebServlet("/home")
 public class HomeServlet extends HttpServlet {
@@ -40,10 +42,10 @@ public class HomeServlet extends HttpServlet {
     private ResourceBundle getBundle(HttpServletRequest request, HttpServletResponse response) {
 	switch (request.getParameter("language")) {
 	case "en":
-	    return ResourceBundle.getBundle("input_en", new Locale("en", "GB"));
+	    return new EnBundleMaker().makeBundle();
 
 	case "ru":
-	    return ResourceBundle.getBundle("input_ru", new Locale("ru", "RU"));
+	    return new RuBundleMaker().makeBundle();
 
 	default:
 	    throw new RuntimeException("Unsupported language");
