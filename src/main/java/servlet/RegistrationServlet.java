@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.entity.NoteBookSingleton;
+import model.entity.Record;
 import model.entity.builder.RecordBuilder;
 import model.exception.EmailAlreadyExistsException;
 import servlet.util.StringUtil;
@@ -73,21 +74,12 @@ public class RegistrationServlet extends HttpServlet {
 
     private void redirect(HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
+	Record record = buildRecord();
 	RequestDispatcher dispatcher;
 
 	if (checker.isValidation()) {
 	    try {
-		noteBook.add(new RecordBuilder()
-			.setFullName(surname, name, patronymic, StringUtil.truncateName(surname, name))
-			.setNick(nick)
-			.setDesription(description)
-			.setGroup(group)
-			.setTelephone(mainTelephone, spareTelephone)
-			.setEmail(email)
-			.setSkype(skype)
-			.setAddress(index, city, street, houseNumber, apartmentNumber,
-				StringUtil.createFullAddress(index, city, street, houseNumber, apartmentNumber))
-			.build());
+		noteBook.add(record);
 
 		dispatcher = this.getServletContext().getRequestDispatcher("/success.jsp");
 	    } catch (EmailAlreadyExistsException e) {
@@ -103,6 +95,20 @@ public class RegistrationServlet extends HttpServlet {
 	}
 
 	dispatcher.forward(request, response);
+    }
+
+    private Record buildRecord() {
+	return new RecordBuilder()
+		.setFullName(surname, name, patronymic, StringUtil.truncateName(surname, name))
+		.setNick(nick)
+		.setDesription(description)
+		.setGroup(group)
+		.setTelephone(mainTelephone, spareTelephone)
+		.setEmail(email)
+		.setSkype(skype)
+		.setAddress(index, city, street, houseNumber, apartmentNumber,
+			StringUtil.createFullAddress(index, city, street, houseNumber, apartmentNumber))
+		.build();
     }
 
     private void setValidation() {
